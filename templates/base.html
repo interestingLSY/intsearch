@@ -1,0 +1,13 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> {% block title %}{% endblock %} </title>
+	{% block head %}{% endblock %}
+	<link rel="stylesheet" href="/static/modules/font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/static/modules/buttons/buttons.css" />
+	<script src="/static/modules/buttons/buttons.js"></script>
+</head>
+<body style="margin: 0;{% block bodystyle %}{% endblock %}">
+	{% block body %}{% endblock %}
+</body>
+</html>
