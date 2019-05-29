@@ -2,41 +2,35 @@
 
 {% block title %} Intsearch {% endblock %}
 {% block head %}
-<style>
-	input{
-		opacity: 0.7;
-		transition: .2s all;
-		border: none;
-		padding: 1px 12px;
-		/* box-shadow: 2px 2px 3px #666; */
-		border-radius: 3px;
-		font-size: 20px;
-		letter-spacing: 2px;
-			font-family: monospace;
-	}
-	input:focus{
-		opacity: 1;
-		border: 1px solid #66ccff;
-	}
-</style>
+<link rel="stylesheet" href="/static/css/intsearch.css" />
 {% endblock %}
 
 {% block bodystyle %}
 	background-image: url('https://open.saintic.com/api/bingPic/')
 {% endblock %}
 {% block body %}
-<form method="POST">
-	<div style="position: absolute; left: 12%; height: 100%; width: 86%;">
-		<div id="search-box" style="position: absolute; top: 20%; width: 50%; height: 50px; display: flex; align-items: sketch">
-			<span style="color: #fff; font-size: 32px; font-weight: 300; letter-spacing: 4px; margin-right: 20px;">
-				Intsearch
-			</span>
-			<input id="search-words" name="q" style="height: 100%; width: 100%">
-			</input>
-			<button class="button button-square" style="width: 50px; height: 100%;">
-				<i class="icon-search"> </i>
-			</button>
-		</div>
-	</div>
-</form>
+<div id="search-box">
+	<span style="color: #fff; font-size: 32px; font-weight: 400; letter-spacing: 4px; margin-right: 20px; font-family: sans-mono">
+		Intsearch
+	</span>
+	<input id="q" style="height: 100%; width: 100%" type="text">
+	</input>
+	<button id="q-submit" class="button button-square" style="width: 50px; height: 100%;">
+		<i class="icon-search"> </i>
+	</button>
+	<script>
+		$("#q-submit").click(function(){Response()})
+		$("#q").keydown(function(event){
+			if( event.which == 13 )
+				Response()
+		})
+	</script>
+</div>
+<div id="search-result-box" hidden>
+
+</div>
+
+<script>
+	// Response()
+</script>
 {% endblock %}
