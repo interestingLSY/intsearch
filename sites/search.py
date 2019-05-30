@@ -1,6 +1,45 @@
 #coding: utf-8
 from flask import *
+import requests
+from lxml import etree
 import modules
+
+def GetText(t):
+	result = ""
+	for text in t.itertext(): result += text
+	return result
+
+def GetBingSearchResult(q):
+	headers = {
+		'Host': 'cn.bing.com',
+		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+		'Accept-Encoding': 'gzip',
+		'Upgrade-Insecure-Requests': '1',
+		'Cache-Control': 'max-age=0'
+	}
+	q = q.replace(' ','+')
+	resp = requests.get(url="https://cn.bing.com/search?q=%s"%q,headers=headers)
+	print("https://cn.bing.com/search?q=%s"%q)
+	c = resp.text
+	print(c)
+	open('c.html','w').write(c)
+	htmltree = etree.HTML(c)
+	results = []
+	origin_results = htmltree.xpath("//ol[@id='b_results']/li[@class='b_algo']")
+	for origin_result in origin_results:
+		try:
+			# description = ""
+			# for text in origin_result.xpath('div//p')[0].itertext(): description += text
+			print(origin_result.xpath('h2/a')[0].text)
+			result = {
+				"title": GetText(origin_result.xpath('h2/a')[0]),
+				"description": ' ',
+				"link": origin_result.xpath('h2//a')[0].attrib['href']
+			}
+			results.append(result)
+		except: pass
+	return results
+
 
 def Search(q):
 	ret = [
@@ -20,4 +59,6 @@ def Search(q):
 			"link": "https://www.bilibili.com/video/av21511483"
 		}
 	]
-	return modules.ReturnJSON(ret)
+
+	# return modules.ReturnJSON(ret)
+	return modules.ReturnJSON(GetBingSearchResult(q))

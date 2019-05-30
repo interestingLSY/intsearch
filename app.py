@@ -19,7 +19,6 @@ def Index():
 
 @app.route('/api/search')
 def Search():
-	print(request.args['q'])
 	return sites.search.Search(request.args['q'])
 
 app.secret_key = '你知道也没事反正我不用这个'

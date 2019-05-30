@@ -40,6 +40,11 @@ function Search(q){
 }
 
 function Response(){
+	$("#search-box").animate({
+		left: '3%',
+		top: '6%'
+	})
+
 	results = Search($("#q").val())
 	console.log(results);
 
@@ -48,7 +53,7 @@ function Response(){
 		var result = results[i]
 		now_html = "\
 			<div class=\"search-result\">\n\
-				<h1> <a href={link}> {title} </a> </h1>\n\
+				<h1> <a href=\"{link}\"> {title} </a> </h1>\n\
 				<p> {description}... </p>\n\
 			</div>\n".format({
 				title: result.title,

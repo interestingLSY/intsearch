@@ -28,8 +28,8 @@ input#q:focus{
 #search-result-box{
 	background-color: #dddddd;
 	background-color: #dddddd99 !important;
-	width: 43%;
-	margin: 2% 3% 0% 54%;
+	width: 46%;
+	margin: 2% 5% 0% 51%;
 	padding: 14px 14px;
 	border-radius: 4px;
 }
